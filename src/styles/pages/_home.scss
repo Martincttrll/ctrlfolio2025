@@ -6,6 +6,42 @@
   // position: relative;
 }
 
+.home__wrapper {
+  @extend %texture-bg;
+  min-height: 100%;
+}
+.home__hero__wrapper {
+  position: relative;
+  height: 100dvh;
+  width: 100vw;
+}
+.home__background__img {
+  height: 100dvh;
+  width: 100%;
+  mix-blend-mode: difference;
+}
+
+.home__title__wrapper {
+  position: absolute;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+h1.home__title {
+  font-family: "wagon";
+  font-weight: 700;
+  color: white;
+  font-size: 20rem;
+}
+.home__baseline {
+  position: absolute;
+  top: -20px;
+  @extend %text-18;
+  color: white;
+  letter-spacing: 6rem;
+  font-family: "wagon";
+}
 .home p {
   @extend %text-16;
 }

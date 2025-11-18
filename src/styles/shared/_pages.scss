@@ -2,3 +2,7 @@
 %page {
   @extend %cover;
 }
+
+%texture-bg {
+  background: url("img/paper-texture.jpg") repeat;
+}
