@@ -18,11 +18,11 @@
 .home__background__img {
   height: 100dvh;
   width: 100%;
-  mix-blend-mode: difference;
 }
 
 .home__title__wrapper {
   position: absolute;
+  z-index: 2;
   width: 100%;
   transform: translate(-50%, -50%);
   top: 50%;

@@ -1,5 +1,9 @@
 import "@styles/style.scss";
 import Home from "@pages/Home";
+import Works from "@pages/Works";
+import Work from "@pages/Work";
+import Lab from "@pages/Lab";
+import Contact from "@pages/Contact";
 import { Navigation } from "@components/Navigation";
 import { each } from "lodash";
 import { Preloader } from "@components/Preloader";
@@ -7,7 +11,7 @@ import Canvas from "@components/Canvas";
 import gsap from "gsap";
 class App {
   constructor() {
-    console.log("©2025 - Boilerplate by MartinCtrl");
+    console.log("©2025 - MartinCtrl");
     this.createContent();
     this.createPreloader();
     this.createNavigation();
@@ -16,8 +20,6 @@ class App {
     this.addEventListeners();
     this.addLinkListeners();
     this.addDebug();
-    this.onResize();
-
     gsap.ticker.add(this.update.bind(this));
   }
 
@@ -43,6 +45,10 @@ class App {
   createPages() {
     this.pages = {
       home: new Home(),
+      works: new Works(),
+      work: new Work(),
+      lab: new Lab(),
+      contact: new Contact(),
     };
 
     this.page = this.pages[this.template];
@@ -65,10 +71,12 @@ class App {
 
   onPreloaded() {
     //Canvas
-    this.onResize();
     this.canvas.onPreloaded();
     this.update();
     this.page.setCanvasPage(this.canvas.canvasPage);
+    requestAnimationFrame(() => {
+      this.onResize();
+    });
   }
 
   onPreloaderAnimationCompleted() {
@@ -80,11 +88,9 @@ class App {
       this.page.onResize();
     }
 
-    window.requestAnimationFrame(() => {
-      if (this.canvas && this.canvas.onResize) {
-        this.canvas.onResize();
-      }
-    });
+    if (this.canvas && this.canvas.onResize) {
+      this.canvas.onResize();
+    }
   }
 
   onPopState = () => {
@@ -118,7 +124,9 @@ class App {
       this.template = newTemplate;
       document.title = newTitle;
 
-      this.navigation.onChange(this.template);
+      if (this.navigation.onChange) {
+        this.navigation.onChange(this.template);
+      }
 
       if (push) {
         window.history.pushState({}, "", url);

@@ -86,7 +86,6 @@ export default class Canvas {
 
   onPreloaded() {
     this.createHome();
-
     this.onChange({ template: this.template, isPreloaded: true });
   }
 
@@ -101,7 +100,6 @@ export default class Canvas {
     const width = height * this.camera.aspect;
 
     this.sizes = { width, height };
-
     if (this.home && this.home.onResize) {
       this.home.onResize(this.sizes);
     }

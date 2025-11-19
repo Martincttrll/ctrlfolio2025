@@ -15,11 +15,12 @@ export class Preloader extends Component {
 
     this.minDisplayTime = 1500;
     this.entryStartTime = performance.now();
-
     //Disable preloader for dev
-    this.emit("completed");
-    this.emit("animationCompleted");
-    this.destroy();
+    requestAnimationFrame(() => {
+      this.emit("completed");
+      this.emit("animationCompleted");
+      this.destroy();
+    });
     // this.loadAssets().then(() => {
     //   const elapsed = performance.now() - this.entryStartTime;
     //   const delay = Math.max(0, this.minDisplayTime - elapsed);
