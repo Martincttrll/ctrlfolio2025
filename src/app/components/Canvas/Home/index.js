@@ -2,10 +2,10 @@ import * as THREE from "three";
 import LiquidBackground from "./LiquidBackground";
 
 export default class Home {
-  constructor({ scene, sizes, camera }) {
+  constructor({ scene, sizes, renderer }) {
     this.scene = scene;
+    this.renderer = renderer;
     this.sizes = sizes;
-    this.camera = camera;
     this.group = new THREE.Group();
   }
 
@@ -15,6 +15,7 @@ export default class Home {
     this.liquidBackground = new LiquidBackground({
       element: document.querySelector(".home__background__img"),
       group: this.group,
+      renderer: this.renderer,
       sizes: this.sizes,
     });
   }

@@ -49,6 +49,7 @@ export default class Canvas {
     this.home = new Home({
       scene: this.scene,
       sizes: this.sizes,
+      renderer: this.renderer,
       camera: this.camera,
     });
   }
@@ -85,7 +86,7 @@ export default class Canvas {
    */
 
   onPreloaded() {
-    this.createHome();
+    this.createHome({ scene: this.scene, sizes: this.sizes });
     this.onChange({ template: this.template, isPreloaded: true });
   }
 

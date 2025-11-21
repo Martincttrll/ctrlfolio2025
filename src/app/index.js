@@ -71,11 +71,12 @@ class App {
 
   onPreloaded() {
     //Canvas
+    this.onResize(); //Set les sizes
     this.canvas.onPreloaded();
     this.update();
     this.page.setCanvasPage(this.canvas.canvasPage);
     requestAnimationFrame(() => {
-      this.onResize();
+      this.onResize(); //Vraiment resizes tous les elements cavans
     });
   }
 
