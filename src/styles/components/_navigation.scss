@@ -1,6 +1,7 @@
 @use "../utils/" as *;
 
 nav.nav__wrapper {
+  font-family: "n27";
   position: sticky;
   z-index: 4;
   display: flex;

@@ -13,7 +13,6 @@ export default class LiquidBackground {
     this.element = element;
     this.group = group;
     this.sizes = sizes;
-    console.log(this.sizes);
     this.mouseAbsolute = { x: 0, y: 0 };
 
     this.createRenderTargets();
@@ -21,7 +20,7 @@ export default class LiquidBackground {
 
     this.createTextures();
     this.createFinalMesh();
-    // this.createGUI();
+    this.createGUI();
     this.addEventListeners();
   }
 
@@ -95,6 +94,7 @@ export default class LiquidBackground {
     this.uniforms = {
       uTexture: { value: this.texture },
       uSimTexture: { value: null },
+      uGrayScale: { value: 1.4 },
       uResolution: {
         value: new THREE.Vector2(window.innerWidth, window.innerHeight),
       },
@@ -118,6 +118,7 @@ export default class LiquidBackground {
 
     // Objet qui contient les params tweakables
     this.params = {
+      grayScale: 1.0,
       delta: 1.4,
       viscosity: 0.002,
       drag: 0.999,
@@ -127,6 +128,10 @@ export default class LiquidBackground {
     };
 
     // Sliders
+    this.gui
+      .add(this.params, "grayScale", 0.1, 10.0, 0.001)
+      .name("grayScale")
+      .onChange((v) => (this.uniforms.uGrayScale.value = v));
     this.gui
       .add(this.params, "delta", 0.1, 4.0, 0.01)
       .name("Delta")

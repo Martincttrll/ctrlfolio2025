@@ -16,9 +16,17 @@
   font-style: light;
 }
 @font-face {
-  font-family: "wagon";
-  src: url("../fonts/Wagon-ExtraLightItalic.woff2") format("woff2");
-  src: url("../fonts/Wagon-ExtraLightItalic.woff") format("woff");
+  font-family: "large";
+  src: url("../fonts/Large-Roman.woff2") format("woff2");
+  src: url("../fonts/Large-Roman.woff2") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "large";
+  src: url("../fonts/Large-Italic.woff2") format("woff2");
+  src: url("../fonts/Large-Italic.woff") format("woff");
   font-weight: 400;
   font-display: swap;
   font-style: italic;
