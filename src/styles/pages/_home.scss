@@ -8,6 +8,7 @@
 
 .home__wrapper {
   @extend %texture-bg;
+  @extend %text-18;
   min-height: 100%;
 }
 .home__hero__wrapper {
@@ -44,4 +45,26 @@ h1.home__title {
 }
 .home p {
   @extend %text-16;
+}
+
+.home__main__wrapper {
+}
+h2.home__main__title {
+}
+.home__works__wrapper {
+}
+a.home__work__link {
+}
+.home__work__card {
+}
+img.home__work__img {
+  width: 50%;
+}
+.home__work__info {
+}
+h3.home__work__title {
+}
+div.home__work__tags {
+}
+span.home__work__tag {
 }

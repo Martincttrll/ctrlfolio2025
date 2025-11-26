@@ -15,7 +15,8 @@ export class Preloader extends Component {
 
     this.minDisplayTime = 1500;
     this.entryStartTime = performance.now();
-    //Disable preloader for dev
+
+    // Disable preloader for dev
     requestAnimationFrame(() => {
       this.emit("completed");
       this.emit("animationCompleted");
@@ -102,6 +103,7 @@ export class Preloader extends Component {
       });
     });
   }
+
   onLoaded() {
     return new Promise((resolve) => {
       this.emit("completed");
@@ -128,6 +130,7 @@ export class Preloader extends Component {
     const padded = value.toString().padStart(3, "0");
     console.log(value);
   }
+
   destroy() {
     this.element.remove(this.element);
   }

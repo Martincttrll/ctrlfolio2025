@@ -1,11 +1,14 @@
 ---
-    permalink: "/works/work/"
-    template: "work"
+    template: work
+    pagination: 
+        data: prismic.works
+        size: 1
+        alias: work
     title: "Work | Martin Cottrelle"
-    
 ---
 extends ./_layouts/layout.pug
 block content
+    //- - console.log(prismic.works);
     .work
         .work__wrapper 
-            h1.work__title Work
+            h1.work__title= work.data.title[0].text

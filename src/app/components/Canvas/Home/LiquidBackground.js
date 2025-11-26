@@ -186,8 +186,18 @@ export default class LiquidBackground {
     this.baseScale = this.mesh.scale.clone();
   }
 
+  updateY(y = 0) {
+    const normalizedScroll = -y / window.innerHeight;
+    this.mesh.position.y =
+      this.sizes.height / 2 -
+      this.mesh.scale.y / 2 -
+      normalizedScroll * this.sizes.height;
+  }
+
   update(scroll) {
     this.simUniforms.uTime.value += 0.01;
+
+    this.updateY(scroll);
 
     const rect = this.element.getBoundingClientRect();
 

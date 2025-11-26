@@ -1,7 +1,7 @@
 ---
     permalink: /
     template: "home"
-    title: "Accueil | Boilerfolio"
+    title: "Accueil | CTRL"
     
 ---
 extends ./_layouts/layout.pug
@@ -13,3 +13,21 @@ block content
                 .home__title__wrapper
                     h1.home__title Martin Cottrelle
                     .home__baseline creative developer
+            .home__main__wrapper 
+                h2.home__main__title Recent Works
+                .home__works__wrapper
+                    each work in prismic.works
+                        a.home__work__link(href=`/works/${work.data.title[0].text.toLowerCase().replace(/\s+/g, '-')}`)
+                            img.home__work__img(src=work.data.img.url, alt=work.data.img.alt)
+                        .home__work__info
+                            h3.home__work__title= work.data.title[0].text
+                            div.home__work__tags= work.data.descriptionHtml
+                            each tag in work.tags
+                                span.home__work__tag= tag
+                .home__experiments__wrapper
+                    each experiment in prismic.experiments
+                        .home__experiment__info
+                            h3.home__experiment__title= experiment.data.title[0].text
+                            //- div.home__experiment__tags= experiment.data.descriptionHtml
+                            //- each tag in experiment.tags
+                                //- span.home__experiment__tag= tag
