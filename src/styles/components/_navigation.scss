@@ -1,12 +1,12 @@
 @use "../utils/" as *;
 
 nav.nav__wrapper {
-  font-family: "n27";
   position: sticky;
   z-index: 4;
   display: flex;
   justify-content: space-between;
   padding: 2.5rem;
+  font-family: "large";
   font-size: 2.5rem;
   @include media("<tablet") {
     padding: 20px;
@@ -18,14 +18,21 @@ nav.nav__wrapper.active {
 }
 a.nav__logo {
   text-transform: uppercase;
+  font-weight: 700;
   @include media("<tablet") {
     font-size: 8rem;
   }
 }
 .nav__wrapper a {
-  color: white;
+  color: $primary;
   mix-blend-mode: difference;
   text-decoration: none;
+  position: relative;
+  &:hover::before {
+    content: ">";
+    position: absolute;
+    left: -15px;
+  }
 }
 .nav__tabs {
   display: flex;

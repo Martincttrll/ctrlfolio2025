@@ -20,7 +20,7 @@ export default class LiquidBackground {
 
     this.createTextures();
     this.createFinalMesh();
-    this.createGUI();
+    // this.createGUI();
     this.addEventListeners();
   }
 

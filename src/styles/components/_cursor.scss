@@ -1,0 +1,36 @@
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease;
+  z-index: 9999;
+}
+
+#cursor::before,
+#cursor::after {
+  content: "";
+  position: absolute;
+  background: black;
+}
+
+#cursor::before {
+  width: 2px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#cursor::after {
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#cursor.rotate {
+  transform: translate(-50%, -50%) rotate(45deg);
+}

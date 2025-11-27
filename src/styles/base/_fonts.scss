@@ -1,20 +1,13 @@
-// //Roboto
+//IBM
 @font-face {
-  font-family: "wagon";
-  src: url("../fonts/Wagon-Bold.woff2") format("woff2");
-  // src: url("../fonts/Wagon-Bold.woff") format("woff");
-  font-weight: 700;
+  font-family: "IBMVGA";
+  src: url("../fonts/WebPlus_IBM_VGA_9x16.woff") format("woff");
+  font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
-@font-face {
-  font-family: "wagon";
-  src: url("../fonts/Wagon-ExtraLight.woff2") format("woff2");
-  // src: url("../fonts/Wagon-ExtraLight.woff") format("woff");
-  font-weight: 400;
-  font-display: swap;
-  font-style: light;
-}
+
+//Large
 @font-face {
   font-family: "large";
   src: url("../fonts/Large-Roman.woff2") format("woff2");

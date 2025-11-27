@@ -9,12 +9,14 @@ import { each } from "lodash";
 import { Preloader } from "@components/Preloader";
 import Canvas from "@components/Canvas";
 import gsap from "gsap";
+import { Cursor } from "./components/Cursor";
 class App {
   constructor() {
     console.log("©2025 - MartinCtrl");
     this.createContent();
     this.createPreloader();
     this.createNavigation();
+    // this.createCursor();
     this.createPages();
     this.createCanvas();
     this.addEventListeners();
@@ -30,6 +32,10 @@ class App {
 
   createNavigation() {
     this.navigation = new Navigation(this.template);
+  }
+
+  createCursor() {
+    this.cursor = new Cursor();
   }
 
   createPreloader() {

@@ -2,6 +2,6 @@
 nav.nav__wrapper 
     a(href="/").nav__logo Ctrl
     .nav__tabs 
-        a(href="/works/").nav__tab works
-        a(href="/lab/").nav__tab lab
+        a(href="/works/").nav__tab works(#{prismic.works.length})
+        a(href="/lab/").nav__tab lab(#{prismic.experiments.length})
         a(href="/contact/").nav__tab contact

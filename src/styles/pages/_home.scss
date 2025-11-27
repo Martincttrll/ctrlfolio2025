@@ -16,6 +16,72 @@
   height: 100dvh;
   width: 100vw;
 }
+.home__background__text__wrapper {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100dvh;
+  font-family: "IBMVGA";
+  font-size: 1.6rem;
+}
+
+.text__col {
+  position: absolute;
+  font-size: 16px;
+  pre.selected,
+  pre:hover {
+    color: white;
+    background-color: black;
+    width: fit-content;
+  }
+
+  pre.cursor {
+    border-right: 2px solid black;
+    animation: blink 1s step-end infinite;
+    width: fit-content;
+  }
+
+  &:nth-child(2) {
+    left: 20%;
+    top: 30%;
+  }
+  &:nth-child(3) {
+    left: 40%;
+    top: 10%;
+  }
+  &:nth-child(4) {
+    left: 45%;
+    top: 15%;
+  }
+  &:nth-child(5) {
+    left: 60%;
+    top: 0%;
+  }
+  &:nth-child(6) {
+    left: 75%;
+    transform: rotateX("90deg");
+  }
+  &:nth-child(7) {
+    left: 75%;
+    bottom: 0%;
+    transform: rotateX("90deg");
+  }
+  &:nth-child(8) {
+    right: 0;
+    top: 18%;
+  }
+}
+@keyframes blink {
+  0%,
+  50% {
+    border-color: black;
+  }
+  51%,
+  100% {
+    border-color: transparent;
+  }
+}
+
 .home__background__img {
   height: 100dvh;
   width: 100%;
@@ -32,17 +98,16 @@
 }
 h1.home__title {
   font-family: "large";
-  // font-weight: 700;
-  // color: rgb(0 63 255);
-  color: rgb(49 69 130);
+  font-weight: 700;
+  color: $primary;
   font-size: 20rem;
   letter-spacing: 0px;
 }
 .home__baseline {
   position: absolute;
+  color: $primary;
   top: -20px;
   @extend %text-18;
-  color: white;
   letter-spacing: 6rem;
   font-family: "large";
 }
