@@ -11,14 +11,21 @@
   @extend %text-18;
   min-height: 100%;
 }
+
+.home__liquid__background__wrapper {
+  position: relative;
+  z-index: 1;
+}
+
 .home__hero__wrapper {
   position: relative;
   height: 100dvh;
   width: 100vw;
+  margin-bottom: 25rem;
 }
 .home__background__text__wrapper {
   position: absolute;
-  z-index: 3;
+  z-index: 1;
   width: 100%;
   height: 100dvh;
   font-family: "IBMVGA";
@@ -89,13 +96,12 @@
 
 .home__title__wrapper {
   position: absolute;
-  z-index: 2;
   width: 100%;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  // text-transform: uppercase;
 }
+
 h1.home__title {
   font-family: "large";
   font-weight: 700;
@@ -106,33 +112,66 @@ h1.home__title {
 .home__baseline {
   position: absolute;
   color: $primary;
-  top: -20px;
-  @extend %text-18;
-  letter-spacing: 6rem;
+  bottom: -20px;
+  left: 20rem;
+  @extend %text-50;
+  // letter-spacing: 6rem;
   font-family: "large";
 }
 .home p {
-  @extend %text-16;
+  @extend %text-50;
+}
+.home__about {
+  margin-bottom: 25rem;
+}
+.home__about__text {
+  text-indent: 10rem;
+  margin: 0 10rem;
 }
 
-.home__main__wrapper {
+h2.home__works__title {
+  text-align: center;
+  margin-bottom: 10rem;
 }
-h2.home__main__title {
-}
+
 .home__works__wrapper {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  // position: relative;
+  border: blue 1px solid;
 }
-a.home__work__link {
+.works__completion {
+  width: 100%;
+  height: 20px;
+  border: 1px white solid;
+  background-color: black;
 }
-.home__work__card {
+.works__completion__inner {
+  height: 18px;
+  background-color: white;
 }
-img.home__work__img {
-  width: 50%;
+img.work__img {
+  width: 100%;
 }
-.home__work__info {
+.works__overlay {
+  padding: 10px;
+  color: white !important;
+  font-size: 2.2rem;
+  font-family: "IBMVGA";
+  text-decoration: none;
+  background-color: black;
 }
-h3.home__work__title {
+.work__title {
 }
-div.home__work__tags {
+.work__tags {
 }
-span.home__work__tag {
+a.work__link {
+}
+.work__navigation {
+}
+.prev {
+}
+.next {
 }

@@ -13,7 +13,7 @@ export default class Home {
 
   createLiquidBackground() {
     this.liquidBackground = new LiquidBackground({
-      element: document.querySelector(".home__background__img"),
+      wrapper: document.querySelector(".home__liquid__background__wrapper"),
       group: this.group,
       renderer: this.renderer,
       sizes: this.sizes,

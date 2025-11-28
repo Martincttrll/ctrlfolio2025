@@ -7,10 +7,10 @@ import { mouse } from "@utils/mousePos";
 import GUI from "lil-gui";
 
 export default class LiquidBackground {
-  constructor({ element, group, sizes, renderer }) {
+  constructor({ wrapper, group, sizes, renderer }) {
     this.mouse = mouse;
     this.renderer = renderer;
-    this.element = element;
+    this.wrapper = wrapper;
     this.group = group;
     this.sizes = sizes;
     this.mouseAbsolute = { x: 0, y: 0 };
@@ -45,11 +45,12 @@ export default class LiquidBackground {
   }
 
   createTextures() {
-    const src = this.element.dataset?.src;
+    const src = "img/watercolor3.webp";
     if (window.PRELOADED && window.PRELOADED[src]) {
       this.image = window.PRELOADED[src];
     } else {
-      this.image = this.element;
+      this.image = new Image();
+      this.image.src = src;
     }
     this.texture = new THREE.Texture(this.image);
     this.texture.wrapS = THREE.ClampToEdgeWrapping;
@@ -110,8 +111,6 @@ export default class LiquidBackground {
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.mesh.position.set(0, 0, 0);
     this.group.add(this.mesh);
-
-    this.element.style.visibility = "hidden";
   }
   createGUI() {
     this.gui = new GUI({ title: "Liquid Simulation" });
@@ -157,9 +156,13 @@ export default class LiquidBackground {
   }
   onResize(sizes) {
     this.sizes = sizes;
+    const backgroundHeight = document
+      .querySelector(".home__liquid__background__wrapper")
+      .getBoundingClientRect().height;
 
     const meshWidth = this.sizes.width;
-    const meshHeight = this.sizes.height;
+    const meshHeight =
+      (this.sizes.height * backgroundHeight) / window.innerHeight;
 
     this.rtA.setSize(window.innerWidth, window.innerHeight);
     this.rtB.setSize(window.innerWidth, window.innerHeight);
@@ -204,7 +207,7 @@ export default class LiquidBackground {
 
     this.updateY(scroll);
 
-    const rect = this.element.getBoundingClientRect();
+    const rect = this.wrapper.getBoundingClientRect();
 
     const mouseX = (this.mouseAbsolute.x - rect.left) / rect.width;
     const mouseY = 1.0 - (this.mouseAbsolute.y - rect.top) / rect.height;

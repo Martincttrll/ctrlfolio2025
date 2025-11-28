@@ -21,8 +21,9 @@ html(lang='fr')
         include ../_includes/navigation.pug
         .content(data-template=template)
             block content
-        div#cursor
 
     script.
-        //- window.ASSETS = JSON.stringify(prismic.assets).replace(/<\//g, "<\\/");
+        window.PRISMIC = !{JSON.stringify(prismic).replace(/<\//g, "<\\/")};
+
     script(type="module", src="/src/app/index.js")
+

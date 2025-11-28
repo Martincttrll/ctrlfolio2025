@@ -1,4 +1,5 @@
 import Page from "@classes/Page";
+import { WorkViewer } from "./WorkViewer";
 
 export default class Home extends Page {
   constructor() {
@@ -14,6 +15,11 @@ export default class Home extends Page {
 
   create() {
     super.create();
+    this.createWorkViewer();
+  }
+
+  createWorkViewer() {
+    this.workViewer = new WorkViewer();
   }
 
   show() {

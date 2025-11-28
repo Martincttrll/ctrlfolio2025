@@ -8,28 +8,37 @@ extends ./_layouts/layout.pug
 block content
     .home
         .home__wrapper 
-            .home__hero__wrapper
-                .home__background__text__wrapper
-                    include ./_includes/text-column.pug
-                img(src="img/watercolor3.webp").home__background__img
-                .home__title__wrapper
-                    h1.home__title Martin Cottrelle
-                    .home__baseline creative developer
-            .home__main__wrapper 
-                h2.home__main__title Recent Works
-                .home__works__wrapper
-                    each work in prismic.works
-                        a.home__work__link(href=`/works/${work.data.title[0].text.toLowerCase().replace(/\s+/g, '-')}`)
-                            img.home__work__img(src=work.data.img.url, alt=work.data.img.alt)
-                        .home__work__info
-                            h3.home__work__title= work.data.title[0].text
-                            div.home__work__tags= work.data.descriptionHtml
-                            each tag in work.tags
-                                span.home__work__tag= tag
-                .home__experiments__wrapper
-                    each experiment in prismic.experiments
-                        .home__experiment__info
-                            h3.home__experiment__title= experiment.data.title[0].text
-                            //- div.home__experiment__tags= experiment.data.descriptionHtml
-                            //- each tag in experiment.tags
-                                //- span.home__experiment__tag= tag
+            .home__liquid__background__wrapper
+                .home__hero__wrapper
+                    .home__background__text__wrapper
+                        include ./_includes/text-column.pug
+                    .home__title__wrapper
+                        h1.home__title Martin Cottrelle
+                        .home__baseline ↓ creative developer
+
+                .home__about 
+                    p.home__about__text
+                        | Curiosity and a thirst to learn are at the core of who I am. Code becomes a way to explore ideas rather than just build interfaces. Creativity in all its forms
+                        span.italic — painting, design, architecture, music, and more —
+                        |  nourishes me, even goes beyond the scope of my own practice. Learning from many fields feeds my process and fuels my desire to experiment. Technology becomes a medium to experiment and see what emerges from ideas. This journey is ongoing, always evolving, always reaching for new ways to bring creativity and code together.
+                .home__works 
+                    h2.home__works__title Works
+                    .home__works__wrapper
+                        img.work__img
+                        .works__overlay
+                            .works__completion
+                                .works__completion__inner
+                            .work__title
+                            .work__date
+                            .work__tags
+                            a.work__link(href="", target="_blank") visit live 
+                            .work__navigation
+                                .prev
+                                .next                            
+            .home__experiments__wrapper
+                each experiment in prismic.experiments
+                    .home__experiment__info
+                        h3.home__experiment__title= experiment.data.title[0].text
+                        //- div.home__experiment__tags= experiment.data.descriptionHtml
+                        //- each tag in experiment.tags
+                            //- span.home__experiment__tag= tag

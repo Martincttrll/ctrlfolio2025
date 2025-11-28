@@ -35,6 +35,8 @@ export class Preloader extends Component {
     return new Promise((resolve) => {
       const assets = window.ASSETS || [];
 
+      window.ASSETS.push("img/watercolor3.webp");
+
       const totalSteps = assets.length;
       let loaded = 0;
 
