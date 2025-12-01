@@ -10,8 +10,7 @@ block content
         .home__wrapper 
             .home__liquid__background__wrapper
                 .home__hero__wrapper
-                    .home__background__text__wrapper
-                        include ./_includes/text-column.pug
+                    include ./_includes/text-column.pug
                     .home__title__wrapper
                         h1.home__title Martin Cottrelle
                         .home__baseline ↓ creative developer
@@ -24,17 +23,18 @@ block content
                 .home__works 
                     h2.home__works__title Works
                     .home__works__wrapper
-                        img.work__img
-                        .works__overlay
-                            .works__completion
-                                .works__completion__inner
-                            .work__title
-                            .work__date
-                            .work__tags
-                            a.work__link(href="", target="_blank") visit live 
-                            .work__navigation
-                                .prev
-                                .next                            
+                        .works__row
+                            .work__link
+                                .work__link__label (View project)
+                                img.work__img
+                            .works__overlay
+                                .work__title
+                                .work__date
+                                .work__tags
+                                a.work__url(href="", target="_blank") visit live&#8599;
+                        .works__completion
+                            .works__completion__inner
+                                               
             .home__experiments__wrapper
                 each experiment in prismic.experiments
                     .home__experiment__info
