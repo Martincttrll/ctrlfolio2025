@@ -15,8 +15,8 @@ export class SmoothScroll {
 
   create() {
     this.lenis = new Lenis({
-      wrapper: this.wrapper,
-      content: this.content,
+      wrapper: document.querySelector("body"),
+      content: document.querySelector(".content"),
       lerp: 0.07,
       autoRaf: false,
     });

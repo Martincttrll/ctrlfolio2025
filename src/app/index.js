@@ -9,7 +9,8 @@ import { each } from "lodash";
 import { Preloader } from "@components/Preloader";
 import Canvas from "@components/Canvas";
 import gsap from "gsap";
-import { Cursor } from "./components/Cursor";
+import { Cursor } from "@components/Cursor";
+import Footer from "@components/Footer";
 class App {
   constructor() {
     console.log("©2025 - MartinCtrl");
@@ -17,6 +18,7 @@ class App {
     this.createPreloader();
     this.createNavigation();
     // this.createCursor();
+    // this.createFooter();
     this.createPages();
     this.createCanvas();
     this.addEventListeners();
@@ -36,6 +38,10 @@ class App {
 
   createCursor() {
     this.cursor = new Cursor();
+  }
+
+  createFooter() {
+    this.footer = new Footer();
   }
 
   createPreloader() {
@@ -67,7 +73,7 @@ class App {
 
   update() {
     if (this.canvas) {
-      this.canvas.update(this.page.smoothScroll.scroll);
+      // this.canvas.update(this.page.smoothScroll.scroll);
     }
   }
 

@@ -16,7 +16,9 @@ body {
   overflow: hidden;
   cursor: crosshair;
 }
-
+.content {
+  @extend %cover;
+}
 //lenis
 html.lenis,
 html.lenis body {
