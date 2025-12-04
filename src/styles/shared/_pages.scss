@@ -1,7 +1,8 @@
 @use "../utils" as *;
 %page {
   @extend %cover;
-  font-family: "Switzer-Regular";
+  font-family: "Switzer";
+  color: #191919;
 }
 
 %texture-bg {

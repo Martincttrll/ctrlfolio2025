@@ -35,10 +35,17 @@ block content
                         .works__completion
                             .works__completion__inner
                                                
-            .home__experiments__wrapper
-                each experiment in prismic.experiments
-                    .home__experiment__info
-                        h3.home__experiment__title= experiment.data.title[0].text
-                        //- div.home__experiment__tags= experiment.data.descriptionHtml
-                        //- each tag in experiment.tags
-                            //- span.home__experiment__tag= tag
+                .home__experiments__wrapper
+                    .home__experiments__info
+                        h2.home__experiments__title Lab
+                        p.home__experiments__paragraph Some of my personal experiments and explorations with code. Each one has been a way to learn new techniques and to extend my knowledge.
+
+                    .home__experiments__list
+                        each experiment in prismic.experiments
+                            a(href=experiment.data.link.url, target="_blank").home__experiment
+                                .experiment__content
+                                    img(src=experiment.data.img.url).experiment__img
+                                    h3.experiment__title= experiment.data.title[0].text
+                                    .experiment__tags= experiment.data.tags.map(t => t.tag).join(", ")
+                                    .experiment__arrow &#8599;
+                                .experiment__hr

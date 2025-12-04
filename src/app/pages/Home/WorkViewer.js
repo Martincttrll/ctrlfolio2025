@@ -1,5 +1,5 @@
 import Component from "@classes/Component";
-export class WorkViewer extends Component {
+export default class WorkViewer extends Component {
   constructor() {
     super({
       element: ".home__works__wrapper",
@@ -36,7 +36,6 @@ export class WorkViewer extends Component {
         tags: work.data.tags.map((tagObj) => tagObj.tag),
       });
     });
-    console.log(this.works);
   }
 
   updateCompletion() {

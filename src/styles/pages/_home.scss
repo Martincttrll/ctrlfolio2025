@@ -24,14 +24,6 @@
   margin-bottom: 25rem;
 }
 
-.home__title__wrapper {
-  position: absolute;
-  width: 100%;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-}
-
 .text__col {
   position: absolute;
   z-index: 1;
@@ -40,12 +32,12 @@
   pre.selected,
   pre:hover {
     color: white;
-    background-color: black;
+    background-color: #191919;
     width: fit-content;
   }
 
   pre.cursor {
-    border-right: 2px solid black;
+    border-right: 2px solid #191919;
     animation: blink 1s step-end infinite;
     width: fit-content;
   }
@@ -83,7 +75,7 @@
 @keyframes blink {
   0%,
   50% {
-    border-color: black;
+    border-color: #191919;
   }
   51%,
   100% {
@@ -98,7 +90,6 @@
 
 .home__title__wrapper {
   position: absolute;
-  mix-blend-mode: difference;
   width: 100%;
   transform: translate(-50%, -50%);
   top: 50%;
@@ -108,10 +99,13 @@
 h1.home__title {
   font-family: "large";
   font-weight: 700;
-  color: $primary;
-  font-size: 20rem;
+  max-width: 100vw;
   letter-spacing: 0px;
-  mix-blend-mode: difference;
+  // color: $primary;
+  font-size: 15rem;
+  transform: scaleX(2.8);
+  transform-origin: left;
+  width: min-content;
 }
 .home__baseline {
   position: absolute;
@@ -133,6 +127,9 @@ h1.home__title {
   margin: 0 10rem;
 }
 
+.home__works {
+  margin-bottom: 25rem;
+}
 h2.home__works__title {
   text-align: center;
   margin-bottom: 10rem;
@@ -150,7 +147,7 @@ h2.home__works__title {
   width: 100%;
   height: 4px;
   // border: 1px white solid;
-  background-color: black;
+  background-color: #191919;
 }
 .works__completion__inner {
   height: 4px;
@@ -179,7 +176,7 @@ img.work__img {
 }
 a.work__url {
   text-decoration: none;
-  color: black;
+  color: #191919;
   position: absolute;
   bottom: 20px;
 }
@@ -202,9 +199,57 @@ a.work__link {
   font-family: "IBMVGA";
 }
 
-.work__navigation {
+.home__experiments__wrapper {
+  background-color: #191919;
+  color: white;
+  padding: 10rem;
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto 1fr;
 }
-.prev {
+
+h2.home__experiments__title {
+  transform-origin: left;
 }
-.next {
+p.home__experiments__paragraph {
+  font-size: 2rem;
+}
+.home__experiments__list {
+  margin-top: 4rem;
+}
+.home__experiment {
+  display: block;
+  padding-top: 5rem;
+  color: white;
+  text-decoration: none;
+  font-size: 2.5rem;
+  position: relative;
+}
+.experiment__content {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.experiment__img {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 300px;
+  pointer-events: none;
+  transform-origin: center;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease;
+  z-index: 5;
+}
+
+.experiment__tags {
+  font-size: 1.8rem;
+  font-style: italic;
+}
+.experiment__hr {
+  margin-top: 1rem;
+  width: 100%;
+  height: 1px;
+  background-color: white;
 }

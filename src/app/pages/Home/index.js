@@ -1,5 +1,6 @@
 import Page from "@classes/Page";
-import { WorkViewer } from "./WorkViewer";
+import Lab from "./Lab";
+import WorkViewer from "./WorkViewer";
 
 export default class Home extends Page {
   constructor() {
@@ -9,6 +10,7 @@ export default class Home extends Page {
         wrapper: ".home__wrapper",
         mainWrapper: ".home__main__wrapper",
         h1: ".home__title",
+        experiments: ".home__experiment",
       },
     });
   }
@@ -16,10 +18,15 @@ export default class Home extends Page {
   create() {
     super.create();
     this.createWorkViewer();
+    this.createLab();
   }
 
   createWorkViewer() {
     this.workViewer = new WorkViewer();
+  }
+
+  createLab() {
+    this.lab = new Lab(this.elements.experiments);
   }
 
   show() {
