@@ -1,5 +1,6 @@
-@use "navigation";
-@use "scrollbar";
-@use "preloader";
-@use "cursor";
-@use "text-column";
+@forward "navigation";
+@forward "scrollbar";
+@forward "preloader";
+@forward "footer";
+@forward "cursor";
+@forward "text-column";

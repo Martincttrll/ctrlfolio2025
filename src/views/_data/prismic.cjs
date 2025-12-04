@@ -45,10 +45,6 @@ function extractAssetsFromData(data) {
 async function fetchPrismicData() {
   const works = await fetchWorks();
   const experiments = await fetchExperiments();
-  console.log({
-    works,
-    experiments,
-  });
   return {
     works,
     experiments,

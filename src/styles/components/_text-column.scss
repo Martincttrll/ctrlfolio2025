@@ -1,12 +1,13 @@
+@use "../utils" as *;
 pre.selected,
 pre:hover {
   color: white;
-  background-color: #191919;
+  background-color: $primary;
   width: fit-content;
 }
 
 pre.cursor {
-  border-right: 2px solid #191919;
+  border-right: 2px solid $primary;
   animation: blink 1s step-end infinite;
   width: fit-content;
 }
@@ -14,7 +15,7 @@ pre.cursor {
 .home__experiments__title__wrapper {
   pre:hover,
   pre.selected {
-    color: #191919;
+    color: $primary;
     background-color: white;
   }
   pre.cursor {
@@ -30,6 +31,10 @@ pre.cursor {
   font-size: 1.6rem;
 
   //HERO SECTION text__col
+  .home__hero__wrapper &:nth-child(1) {
+    left: 2%;
+    // top: 30%;
+  }
   .home__hero__wrapper &:nth-child(2) {
     left: 20%;
     top: 30%;
@@ -87,7 +92,7 @@ pre.cursor {
 @keyframes blink {
   0%,
   50% {
-    border-color: #191919;
+    border-color: $primary;
   }
   51%,
   100% {
