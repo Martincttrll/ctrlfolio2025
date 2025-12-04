@@ -1,0 +1,106 @@
+pre.selected,
+pre:hover {
+  color: white;
+  background-color: #191919;
+  width: fit-content;
+}
+
+pre.cursor {
+  border-right: 2px solid #191919;
+  animation: blink 1s step-end infinite;
+  width: fit-content;
+}
+
+.home__experiments__title__wrapper {
+  pre:hover,
+  pre.selected {
+    color: #191919;
+    background-color: white;
+  }
+  pre.cursor {
+    animation: blink-white 1s step-end infinite;
+    border-color: white;
+  }
+}
+
+.text__col {
+  position: absolute;
+  z-index: 1;
+  font-family: "IBMVGA";
+  font-size: 1.6rem;
+
+  //HERO SECTION text__col
+  .home__hero__wrapper &:nth-child(2) {
+    left: 20%;
+    top: 30%;
+  }
+  .home__hero__wrapper &:nth-child(3) {
+    left: 40%;
+    top: 10%;
+  }
+  .home__hero__wrapper &:nth-child(4) {
+    left: 45%;
+    top: 15%;
+  }
+  .home__hero__wrapper &:nth-child(5) {
+    left: 60%;
+    top: 0%;
+  }
+  .home__hero__wrapper &:nth-child(6) {
+    left: 75%;
+    transform: rotateX("90deg");
+  }
+  .home__hero__wrapper &:nth-child(7) {
+    left: 75%;
+    bottom: 0%;
+    transform: rotateX("90deg");
+  }
+  .home__hero__wrapper &:nth-child(8) {
+    right: 0;
+    top: 18%;
+  }
+
+  //WORK TITLE text__col
+  .home__works__title__wrapper &:nth-child(1) {
+    top: -20%;
+    left: 24%;
+  }
+  .home__works__title__wrapper &:nth-child(2) {
+    top: 50%;
+    left: 50%;
+  }
+  .home__works__title__wrapper &:nth-child(3) {
+    top: 0;
+    left: 72%;
+  }
+
+  //LAB TITLE text__col
+  .home__experiments__title__wrapper &:nth-child(1) {
+    top: -20%;
+    left: 10%;
+  }
+  .home__experiments__title__wrapper &:nth-child(2) {
+    top: 40%;
+    left: 60%;
+  }
+}
+@keyframes blink {
+  0%,
+  50% {
+    border-color: #191919;
+  }
+  51%,
+  100% {
+    border-color: transparent;
+  }
+}
+@keyframes blink-white {
+  0%,
+  50% {
+    border-color: #ffffff;
+  }
+  51%,
+  100% {
+    border-color: transparent;
+  }
+}

@@ -10,10 +10,17 @@ block content
         .home__wrapper 
             .home__liquid__background__wrapper
                 .home__hero__wrapper
-                    include ./_includes/text-column.pug
+                    include ./_includes/text-column-hero.pug
                     .home__title__wrapper
                         h1.home__title Martin Cottrelle
                         .home__baseline ↓ creative developer
+                    .home__hero__info 
+                            ul.hero-info-list
+                                li sys.birth:2025
+                                li(data-info="timestamp")
+                                li(data-info="date")
+                                li X:43° 17' 60" Y: 5° 24' 0"
+                        
 
                 .home__about 
                     p.home__about__text
@@ -21,7 +28,9 @@ block content
                         span.italic — painting, design, architecture, music, and more —
                         |  nourishes me, even goes beyond the scope of my own practice. Learning from many fields feeds my process and fuels my desire to experiment. Technology becomes a medium to experiment and see what emerges from ideas. This journey is ongoing, always evolving, always reaching for new ways to bring creativity and code together.
                 .home__works 
-                    h2.home__works__title Works
+                    .home__works__title__wrapper
+                        include ./_includes/text-column-works.pug
+                        h2.home__works__title Works
                     .home__works__wrapper
                         .works__row
                             .work__link
@@ -37,7 +46,9 @@ block content
                                                
                 .home__experiments__wrapper
                     .home__experiments__info
-                        h2.home__experiments__title Lab
+                        .home__experiments__title__wrapper
+                            include ./_includes/text-column-lab.pug
+                            h2.home__experiments__title Lab
                         p.home__experiments__paragraph Some of my personal experiments and explorations with code. Each one has been a way to learn new techniques and to extend my knowledge.
 
                     .home__experiments__list
