@@ -1,13 +1,11 @@
 export default class Lab {
   constructor(elements) {
     this.elements = elements;
-    console.log(this.elements);
     this.create();
   }
 
   create() {
     this.elements.forEach((item) => {
-      console.log(item);
       const img = item.querySelector(".experiment__img");
 
       item.addEventListener("mouseenter", () => {

@@ -65,6 +65,9 @@ class App {
 
     this.page = this.pages[this.template];
     this.page.create();
+
+    //Allow to use lenis in navigation for lenis.scrollTo
+    this.navigation.lenis = this.page.smoothScroll.lenis;
   }
 
   createCanvas() {
@@ -73,7 +76,7 @@ class App {
 
   update() {
     if (this.canvas) {
-      // this.canvas.update(this.page.smoothScroll.scroll);
+      this.canvas.update(this.page.smoothScroll.scroll);
     }
   }
 
@@ -171,7 +174,11 @@ class App {
 
     each(links, (link) => {
       link.addEventListener("click", (e) => {
-        if (!link.href.startsWith(window.location.origin)) return;
+        if (
+          !link.href.startsWith(window.location.origin) ||
+          link.href.startsWith("#")
+        )
+          return;
         e.preventDefault();
         const { href } = link;
         this.onChange({ url: href });

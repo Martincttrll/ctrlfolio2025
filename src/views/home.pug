@@ -26,11 +26,11 @@ block content
                     p.home__about__text
                         | Curiosity and a thirst to learn are at the core of who I am. Code becomes a way to explore ideas rather than just build interfaces. Creativity in all its forms
                         span.italic — painting, design, architecture, music, and more —
-                        |  nourishes me, even goes beyond the scope of my own practice. Learning from many fields feeds my process and fuels my desire to experiment. Technology becomes a medium to experiment and see what emerges from ideas. This journey is ongoing, always evolving, always reaching for new ways to bring creativity and code together.
+                        |  nourishes me, even if it goes beyond the scope of my own practice. Learning from many fields feeds my process and fuels my desire to experiment. Technology becomes a medium to experiment and see what emerges from ideas. This journey is ongoing, always evolving, always reaching for new ways to bring creativity and code together.
                 .home__works 
                     .home__works__title__wrapper
                         include ./_includes/text-column-works.pug
-                        h2.home__works__title Works
+                        h2.home__works__title#works Works
                     .home__works__wrapper
                         .works__row
                             .work__link
@@ -48,7 +48,7 @@ block content
                     .home__experiments__info
                         .home__experiments__title__wrapper
                             include ./_includes/text-column-lab.pug
-                            h2.home__experiments__title Lab
+                            h2.home__experiments__title#lab Lab
                         p.home__experiments__paragraph Some of my personal experiments and explorations with code. Each one has been a way to learn new techniques and to extend my knowledge.
 
                     .home__experiments__list
@@ -60,4 +60,5 @@ block content
                                     .experiment__tags= experiment.data.tags.map(t => t.tag).join(", ")
                                     .experiment__arrow &#8599;
                                 .experiment__hr
-                                
+            include ./_includes/footer.pug
+            

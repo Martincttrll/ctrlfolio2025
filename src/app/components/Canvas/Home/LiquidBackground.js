@@ -156,9 +156,7 @@ export default class LiquidBackground {
   }
   onResize(sizes) {
     this.sizes = sizes;
-    const backgroundHeight = document
-      .querySelector(".home__liquid__background__wrapper")
-      .getBoundingClientRect().height;
+    const backgroundHeight = this.wrapper.getBoundingClientRect().height;
 
     const meshWidth = this.sizes.width;
     const meshHeight =

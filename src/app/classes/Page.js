@@ -33,7 +33,7 @@ export default class Page extends EventEmitter {
         }
       }
     });
-    // this.createSmoothScroll();
+    this.createSmoothScroll();
     this.createAnimations();
   }
 

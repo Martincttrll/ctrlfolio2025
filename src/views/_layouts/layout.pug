@@ -21,7 +21,6 @@ html(lang='fr')
         include ../_includes/navigation.pug
         .content(data-template=template)
             block content
-        include ../_includes/footer.pug
 
     script.
         window.PRISMIC = !{JSON.stringify(prismic).replace(/<\//g, "<\\/")};
