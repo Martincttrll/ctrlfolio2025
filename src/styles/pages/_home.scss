@@ -122,6 +122,9 @@ img.work__img {
   text-decoration: none;
 }
 .work__title {
+  font-family: "large";
+  transform: scaleX(1.8);
+  transform-origin: left;
   font-size: 5rem;
 }
 .work__tags {
@@ -149,7 +152,8 @@ a.work__link {
   z-index: 2;
   font-size: 3rem;
   color: white;
-  font-family: "IBMVGA";
+  font-family: "Switzer";
+  font-weight: 700;
 }
 
 .home__experiments__wrapper {

@@ -95,7 +95,7 @@ export default class WorkViewer extends Component {
       }
 
       this.hoverZone = "middle";
-      label.textContent = "(View project)";
+      label.textContent = "(Discover)";
       label.style.transform = "none";
 
       let x = mouseX - label.offsetWidth / 2;
