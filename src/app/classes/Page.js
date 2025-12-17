@@ -1,7 +1,8 @@
 import EventEmitter from "events";
 import { each } from "lodash";
 import { SmoothScroll } from "@animations/SmoothScroll";
-
+import TypeWriter from "@animations/TypeWriter";
+import MainTitle from "@animations/MainTitle";
 export default class Page extends EventEmitter {
   constructor({ element, elements }) {
     super();
@@ -10,6 +11,8 @@ export default class Page extends EventEmitter {
       element,
       ...elements,
       // animationsTitles: "[data-animation='title']",
+      animationsTypeWriter: ".text__col pre",
+      animationsMainTitle: '[data-animation="main-title"]',
     };
   }
 
@@ -45,9 +48,19 @@ export default class Page extends EventEmitter {
         : [elements];
     };
 
-    // this.animationsTitles = toArray(this.elements.animationsTitles).map(
-    //   (element) => new Title({ element })
-    // );
+    this.animationsTypeWriter = toArray(this.elements.animationsTypeWriter).map(
+      (element) => new TypeWriter({ element })
+    );
+    this.animationsMainTitle = toArray(this.elements.animationsMainTitle).map(
+      (element) =>
+        new MainTitle({
+          element,
+          elements: {
+            span: document.querySelectorAll("h1 span"),
+            baseline: document.querySelector(".home__baseline"),
+          },
+        })
+    );
   }
 
   createSmoothScroll() {
