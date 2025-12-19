@@ -9,23 +9,22 @@ export class Navigation {
   }
 
   addEventListeners() {
-    this.links.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const targetID = link.getAttribute("href");
-        const target = document.querySelector(targetID);
-        console.log(target);
-        console.log(this.lenis);
-        if (!target) return;
-
-        // this.lenis is set in App.createPages()
-        this.lenis.scrollTo(target, {
-          offset: 0,
-          duration: 1.2,
-          easing: (t) => 1 - Math.pow(1 - t, 3),
-        });
-      });
-    });
+    // this.links.forEach((link) => {
+    //   link.addEventListener("click", (e) => {
+    //     e.preventDefault();
+    //     const targetID = link.getAttribute("href");
+    //     const target = document.querySelector(targetID);
+    //     console.log(target);
+    //     console.log(this.lenis);
+    //     if (!target) return;
+    //     // this.lenis is set in App.createPages()
+    //     this.lenis.scrollTo(target, {
+    //       offset: 0,
+    //       duration: 1.2,
+    //       easing: (t) => 1 - Math.pow(1 - t, 3),
+    //     });
+    //   });
+    // });
   }
 
   show() {

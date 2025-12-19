@@ -13,7 +13,7 @@ import { Cursor } from "@components/Cursor";
 import Footer from "@components/Footer";
 class App {
   constructor() {
-    console.log("©2025 - MartinCtrl");
+    console.log("©2026 - MartinCtrl");
     this.createContent();
     this.createPreloader();
     this.createNavigation();
@@ -176,7 +176,7 @@ class App {
       link.addEventListener("click", (e) => {
         if (
           !link.href.startsWith(window.location.origin) ||
-          link.href.startsWith("#")
+          link.getAttribute("href").startsWith("#")
         )
           return;
         e.preventDefault();

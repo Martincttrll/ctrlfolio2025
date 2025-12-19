@@ -4,12 +4,17 @@
         data: prismic.works
         size: 1
         alias: work
-    title: "Work | Martin Cottrelle"
 ---
 extends ./_layouts/layout.pug
 block content
-    //- - console.log(prismic.works);
     .work
         .work__wrapper 
-            h1.work__title= work.data.title[0].text
+            img(src=work.data.img.url, alt=work.data.title[0].text).work__img
+            .work__content
+                .work__info 
+                    .work__tags= work.data.tags.map((t) => '[' + t.tag + ']').join(' ')
+                    a(href=work.data.link.url, target="_blank").work__link Live Website &#8599;
+                h1.work__title= work.data.title[0].text
+                .work__text!= work.data.descriptionHtml
+
         include ./_includes/footer.pug

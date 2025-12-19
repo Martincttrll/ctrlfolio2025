@@ -30,7 +30,7 @@ export default class WorkViewer extends Component {
           "/works/" +
           work.data.title[0].text.toLowerCase().replace(/\s+/g, "-") +
           "/",
-        date: work.data.date,
+        date: work.data.year,
         url: work.data.link.url,
         imgUrl: work.data.img.url,
         tags: work.data.tags.map((tagObj) => tagObj.tag),
@@ -46,7 +46,7 @@ export default class WorkViewer extends Component {
   displayWork(work) {
     this.elements.title.textContent = work.title;
     this.elements.img.src = work.imgUrl;
-    this.elements.date.textContent = "/year:2025_";
+    this.elements.date.textContent = "//date:" + work.date;
     this.elements.url.href = work.url;
     this.elements.tags.innerHTML = "";
     work.tags.forEach((tag) => {

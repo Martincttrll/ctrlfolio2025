@@ -8,7 +8,7 @@ async function fetchWorks() {
   const { results } = await client.getByType("works");
 
   results.forEach((work) => {
-    work.descriptionHtml = prismic.asHTML(work.data.description);
+    work.data.descriptionHtml = prismic.asHTML(work.data.description);
   });
 
   return results;

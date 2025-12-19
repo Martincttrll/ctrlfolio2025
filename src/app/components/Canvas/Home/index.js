@@ -42,6 +42,6 @@ export default class Home {
     this.scene.add(this.group);
   }
   hide() {
-    this.scene.remove(this.group);
+    // this.scene.remove(this.group);
   }
 }

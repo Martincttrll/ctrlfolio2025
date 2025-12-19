@@ -7,7 +7,6 @@ gsap.registerPlugin(SplitText);
 export default class MainTitle extends Animation {
   constructor({ element, elements }) {
     super({ element, elements });
-    console.log(elements);
   }
 
   animateIn() {

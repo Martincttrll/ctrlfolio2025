@@ -1,0 +1,60 @@
+@use "../shared" as *;
+@use "../utils" as *;
+.work {
+  @extend %page;
+  overflow-x: hidden;
+  // position: relative;
+}
+
+.work__wrapper {
+  @extend %texture-bg;
+  @extend %text-18;
+  min-height: 100%;
+}
+
+.work__info {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.work__tags {
+  font-family: "IBMVGA";
+}
+
+.work__link {
+  // text-decoration: none;
+  color: $primary;
+}
+
+.work h1 {
+  text-align: center;
+  font-family: "large";
+  font-weight: 700;
+  letter-spacing: 0px;
+  font-size: 10rem;
+  color: $primary;
+  transform: scaleX(2.8);
+  transform-origin: center;
+  max-width: 100vw;
+  margin: 5rem 0 5rem 0;
+}
+
+.work__content {
+  @extend %content-padding;
+  padding-bottom: 10rem;
+}
+
+.work p,
+.work li {
+  @extend %text-32;
+  margin-bottom: 2rem;
+}
+
+.work strong {
+  font-weight: 700;
+  color: $primary;
+}
+
+.work h3 {
+  margin-bottom: 2.5rem;
+}
