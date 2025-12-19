@@ -9,7 +9,7 @@ export default class Canvas {
   }
 
   createRenderer() {
-    this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
 
     this.renderer.domElement.style.pointerEvents = "none";
     this.renderer.domElement.style.position = "absolute";
