@@ -7,11 +7,11 @@ import { mouse } from "@utils/mousePos";
 import GUI from "lil-gui";
 
 export default class LiquidBackground {
-  constructor({ wrapper, group, sizes, renderer }) {
+  constructor({ wrapper, scene, sizes, renderer }) {
     this.mouse = mouse;
     this.renderer = renderer;
     this.wrapper = wrapper;
-    this.group = group;
+    this.scene = scene;
     this.sizes = sizes;
     this.mouseAbsolute = { x: 0, y: 0 };
 
@@ -110,7 +110,7 @@ export default class LiquidBackground {
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.mesh.position.set(0, 0, 0);
-    this.group.add(this.mesh);
+    this.scene.add(this.mesh);
   }
   createGUI() {
     this.gui = new GUI({ title: "Liquid Simulation" });
@@ -156,7 +156,10 @@ export default class LiquidBackground {
   }
   onResize(sizes) {
     this.sizes = sizes;
-    const backgroundHeight = this.wrapper.getBoundingClientRect().height;
+
+    const backgroundHeight = this.wrapper
+      ? this.wrapper.getBoundingClientRect().height
+      : window.innerHeight;
 
     const meshWidth = this.sizes.width;
     const meshHeight =
@@ -191,6 +194,20 @@ export default class LiquidBackground {
     }
     this.baseScale = this.mesh.scale.clone();
   }
+
+  // External API: set the wrapper bounding rect (DOMRect-like) so the class does not
+  // need to query the DOM itself. Call this after page layout is ready.
+  setWrapper(wrapper) {
+    this.wrapper = wrapper;
+    if (this.sizes) this.onResize(this.sizes);
+  }
+
+  // External API: set absolute mouse position (client coords) if you prefer to
+  // forward pointer events from the page instead of relying on a global listener.
+  // setMouseAbsolute(x, y) {
+  //   this.mouseAbsolute.x = x;
+  //   this.mouseAbsolute.y = y;
+  // }
 
   updateY(y = 0) {
     const normalizedScroll = -y / window.innerHeight;

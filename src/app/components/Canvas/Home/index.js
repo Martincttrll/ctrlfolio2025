@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import LiquidBackground from "./LiquidBackground";
 
 export default class Home {
   constructor({ scene, sizes, renderer }) {
@@ -11,26 +10,10 @@ export default class Home {
 
   create() {}
 
-  createLiquidBackground() {
-    this.liquidBackground = new LiquidBackground({
-      wrapper: document.querySelector(".home__wrapper"),
-      group: this.group,
-      renderer: this.renderer,
-      sizes: this.sizes,
-    });
-  }
-
-  update(scroll) {
-    if (this.liquidBackground) {
-      this.liquidBackground.update(scroll);
-    }
-  }
+  update(scroll) {}
 
   onResize(sizes) {
     this.sizes = sizes;
-    if (this.liquidBackground) {
-      this.liquidBackground.onResize(this.sizes);
-    }
   }
 
   addDebug() {
@@ -42,12 +25,9 @@ export default class Home {
   }
 
   async show() {
-    if (!this.liquidBackground) {
-      this.createLiquidBackground();
-    }
     this.scene.add(this.group);
   }
   hide() {
-    // this.scene.remove(this.group);
+    this.scene.remove(this.group);
   }
 }

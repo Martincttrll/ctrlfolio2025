@@ -12,29 +12,11 @@
   min-height: 100%;
 }
 
-.home__liquid__background__wrapper {
-  position: relative;
-  z-index: 1;
-}
-
 .home__hero__wrapper {
   position: relative;
   height: 100dvh;
   width: 100vw;
   margin-bottom: 25rem;
-  &:hover .home__eye {
-    display: block !important;
-  }
-}
-
-.home__eye {
-  display: none;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  width: 75%;
-  z-index: 0;
 }
 
 .home__background__img {

@@ -9,12 +9,13 @@ extends ./_layouts/layout.pug
 block content
     .work
         .work__wrapper 
-            img(src=work.data.img.url, alt=work.data.title[0].text).work__img
-            .work__content
-                .work__info 
-                    .work__tags= work.data.tags.map((t) => '[' + t.tag + ']').join(' ')
-                    a(href=work.data.link.url, target="_blank").work__link Live Website &#8599;
-                h1.work__title= work.data.title[0].text
-                .work__text!= work.data.descriptionHtml
+            .liquid__background__wrapper
+                img(src=work.data.img.url, alt=work.data.title[0].text).work__img
+                .work__content
+                    .work__info 
+                        .work__tags= work.data.tags.map((t) => '[' + t.tag + ']').join(' ')
+                        a(href=work.data.link.url, target="_blank").work__link Live Website &#8599;
+                    h1.work__title= work.data.title[0].text
+                    .work__text!= work.data.descriptionHtml
 
-        include ./_includes/footer.pug
+            include ./_includes/footer.pug

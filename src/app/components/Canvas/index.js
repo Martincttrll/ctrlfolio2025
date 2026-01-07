@@ -1,11 +1,13 @@
 import * as THREE from "three";
 import Home from "./Home";
+import LiquidBackground from "./LiquidBackground";
 export default class Canvas {
   constructor({ template }) {
     this.template = template;
     this.createRenderer();
     this.createScene();
     this.createCamera();
+    this.createLiquidBackground();
   }
 
   createRenderer() {
@@ -38,11 +40,24 @@ export default class Canvas {
   }
 
   update(scroll) {
+    //Liquidbackground
+    if (this.liquidBackground) {
+      this.liquidBackground.update(scroll);
+    }
+
     if (this.canvasPage) {
       this.canvasPage.update(scroll);
     }
-
     this.renderer.render(this.scene, this.camera);
+  }
+
+  createLiquidBackground() {
+    this.liquidBackground = new LiquidBackground({
+      wrapper: document.querySelector(".lenis>div"),
+      scene: this.scene,
+      renderer: this.renderer,
+      sizes: this.sizes,
+    });
   }
 
   createHome() {
@@ -50,33 +65,6 @@ export default class Canvas {
       scene: this.scene,
       sizes: this.sizes,
       renderer: this.renderer,
-      camera: this.camera,
-    });
-  }
-
-  createDiscography() {
-    this.discography = new Discography({
-      scene: this.scene,
-      sizes: this.sizes,
-      camera: this.camera,
-      transition: this.transition,
-    });
-  }
-
-  createAlbum() {
-    this.album = new Album({
-      scene: this.scene,
-      sizes: this.sizes,
-      camera: this.camera,
-      group: this.discography.group,
-      transition: this.transition,
-    });
-  }
-
-  createTransitions() {
-    this.transition = new Transition({
-      scene: this.scene,
-      sizes: this.sizes,
       camera: this.camera,
     });
   }
@@ -104,9 +92,20 @@ export default class Canvas {
     if (this.home && this.home.onResize) {
       this.home.onResize(this.sizes);
     }
+
+    //LiquidBackground
+    if (this.liquidBackground) {
+      this.liquidBackground.onResize(this.sizes);
+    }
   }
 
   onChange({ template, isPreloaded }) {
+    //LiquidBackground
+    if (this.liquidBackground) {
+      this.liquidBackground.setWrapper(document.querySelector(".lenis>div"));
+      console.log("liquidbackground upadtewrapper");
+    }
+
     if (this.home) this.home.hide();
     if (template === "home") {
       this.canvasPage = this.home;

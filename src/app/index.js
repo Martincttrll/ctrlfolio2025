@@ -157,6 +157,31 @@ class App {
       this.canvas.onChange({ template: this.template, url });
       this.page.setCanvasPage(this.canvas.canvasPage);
 
+      const requestedUrl = new URL(url, window.location.origin);
+      const requestedHash = requestedUrl.hash;
+      if (requestedHash) {
+        requestAnimationFrame(() => {
+          const id = requestedHash.slice(1);
+          const targetEl =
+            document.getElementById(id) ||
+            document.querySelector(requestedHash);
+          if (targetEl) {
+            if (
+              this.page &&
+              this.page.smoothScroll &&
+              this.page.smoothScroll.lenis
+            ) {
+              this.page.smoothScroll.lenis.scrollTo(targetEl, {
+                offset: 0,
+                duration: 1,
+              });
+            } else {
+              targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
+      }
+
       this.isFetching = false;
       this.addLinkListeners();
     } else {
@@ -174,11 +199,45 @@ class App {
 
     each(links, (link) => {
       link.addEventListener("click", (e) => {
-        if (
-          !link.href.startsWith(window.location.origin) ||
-          link.getAttribute("href").startsWith("#")
-        )
+        const hrefAttr = link.getAttribute("href") || "";
+        if (!link.href.startsWith(window.location.origin)) return;
+
+        if (hrefAttr.startsWith("#") || hrefAttr.startsWith("/#")) {
+          const targetUrl = new URL(link.href);
+          const targetPath = targetUrl.pathname;
+          const targetHash = targetUrl.hash;
+
+          if (targetPath === window.location.pathname) {
+            e.preventDefault();
+            if (!targetHash) return;
+            const id = targetHash.slice(1);
+            const targetEl =
+              document.getElementById(id) || document.querySelector(targetHash);
+            if (
+              this.page &&
+              this.page.smoothScroll &&
+              this.page.smoothScroll.lenis &&
+              targetEl
+            ) {
+              this.page.smoothScroll.lenis.scrollTo(targetEl, {
+                offset: 0,
+                duration: 1,
+              });
+            } else if (targetEl) {
+              targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+            try {
+              window.history.pushState({}, "", targetPath + targetHash);
+            } catch (err) {
+              window.location.hash = targetHash;
+            }
+            return;
+          }
+
+          e.preventDefault();
+          this.onChange({ url: link.href });
           return;
+        }
         e.preventDefault();
         const { href } = link;
         this.onChange({ url: href });

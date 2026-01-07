@@ -16,6 +16,11 @@ body {
   overflow: hidden;
   cursor: crosshair;
 }
+
+.liquid__background__wrapper {
+  position: relative;
+  z-index: 1;
+}
 //lenis
 html.lenis,
 html.lenis body {

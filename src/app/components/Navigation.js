@@ -5,33 +5,20 @@ export class Navigation {
   constructor() {
     this.navigation = document.querySelector(".nav__wrapper");
     this.links = document.querySelectorAll(".nav__tab");
-    // this.addEventListeners();
+    this.logo = document.querySelector(".nav__logo");
+    this.addEventListeners();
   }
 
   addEventListeners() {
-    // this.links.forEach((link) => {
-    //   link.addEventListener("click", (e) => {
-    //     e.preventDefault();
-    //     const targetID = link.getAttribute("href");
-    //     const target = document.querySelector(targetID);
-    //     console.log(target);
-    //     console.log(this.lenis);
-    //     if (!target) return;
-    //     // this.lenis is set in App.createPages()
-    //     this.lenis.scrollTo(target, {
-    //       offset: 0,
-    //       duration: 1.2,
-    //       easing: (t) => 1 - Math.pow(1 - t, 3),
-    //     });
-    //   });
-    // });
+    this.logo.addEventListener("mouseover", (event) => {
+      document.querySelector(".eye").style.display = "block";
+    });
+    this.logo.addEventListener("mouseleave", (event) => {
+      document.querySelector(".eye").style.display = "none";
+    });
   }
 
-  show() {
-    this.navigation.classList.add("active");
-  }
+  show() {}
 
-  hide() {
-    this.navigation.classList.remove("active");
-  }
+  hide() {}
 }
