@@ -55,6 +55,18 @@
   color: $primary;
 }
 
-.work h3 {
-  margin-bottom: 2.5rem;
+.work {
+  h3 {
+    margin-bottom: 2.5rem;
+    font-size: 8rem;
+  }
+  h4 {
+    margin-bottom: 2.5rem;
+    font-size: 4rem;
+  }
+
+  ul {
+    padding-left: 30px;
+    list-style-type: disc;
+  }
 }

@@ -33,7 +33,13 @@ export default class Home {
     }
   }
 
-  addDebug() {}
+  addDebug() {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "d") {
+        console.log(this.scene);
+      }
+    });
+  }
 
   async show() {
     if (!this.liquidBackground) {
