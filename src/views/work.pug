@@ -14,7 +14,7 @@ block content
                 .work__content
                     .work__info 
                         .work__tags= work.data.tags.map((t) => '[' + t.tag + ']').join(' ')
-                        a(href=work.data.link.url, target="_blank").work__link Live Website &#8599;
+                        a(href=work.data.link.url, target="_blank").work__link.external Live website &#8599;
                     h1.work__title= work.data.title[0].text
                     .work__text!= work.data.descriptionHtml
 

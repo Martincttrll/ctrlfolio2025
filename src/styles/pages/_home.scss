@@ -91,33 +91,48 @@ h2.home__works__title {
   margin: 0 auto;
   position: relative;
 }
-.works__completion {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  // border: 1px white solid;
-  background-color: $primary;
-}
-.works__completion__inner {
-  height: 4px;
-  background-color: white;
-}
+
 img.work__img {
   width: 100%;
   transition: filter 0.3s ease;
 }
-.works__overlay {
+.works__minimap {
   position: absolute;
   top: 0;
   right: 0;
   transform: translate(100%, 0);
   height: 100%;
-  padding: 10px;
-  font-size: 2.2rem;
-  font-family: "IBMVGA";
-  text-decoration: none;
+  padding: 0 10px;
+
+  .works__minimap__indicator {
+    position: absolute;
+    top: 0;
+    transform: translateY(0);
+    z-index: 2;
+    width: 71px;
+    height: 46px;
+    border: 2px solid $primary;
+    transition: transform 0.3s ease-out;
+  }
+  .works__minimap__track {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    // margin-top: 4.5px;
+    // margin-left: 4.5px;
+  }
+
+  .works__minimap__thumbnail {
+    width: 75px;
+    height: 50px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease-out;
+  }
+}
+.work__infos {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 .work__title {
   font-family: "large";
@@ -125,14 +140,14 @@ img.work__img {
   transform-origin: left;
   font-size: 5rem;
 }
+
 .work__tags {
-  display: block;
+  display: flex;
 }
+
 a.work__url {
   text-decoration: none;
   color: $primary;
-  position: absolute;
-  bottom: 20px;
 }
 
 a.work__link {
@@ -141,17 +156,60 @@ a.work__link {
 }
 
 .work__link__label {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 2;
-  font-size: 3rem;
-  color: white;
-  font-family: "Switzer";
-  font-weight: 700;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  z-index: 50;
+  will-change: transform, opacity;
+
+  .ribbon {
+    display: block;
+    background: #000;
+    color: #fff;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.4rem;
+    overflow: hidden;
+    height: 3.2rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+  }
+
+  .ribbon__track {
+    padding-top: 3px; // fix vertical alignment
+    display: inline-flex;
+    gap: 3rem;
+    align-items: center;
+    white-space: nowrap;
+    /* animation controlled by JS via --marquee-duration and --marquee-distance */
+    animation-name: ribbon-marquee;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: var(--marquee-duration, 10s);
+    --marquee-distance: 50%;
+  }
+
+  .ribbon__text {
+    display: inline-block;
+    padding-right: 1rem;
+    font-family: "IBMVGA";
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    color: #fff;
+  }
+}
+
+/* marquee keyframes: move left by 50% (two identical blocks make it seamless) */
+@keyframes ribbon-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--marquee-distance)));
+  }
 }
 
 .home__experiments__wrapper {
