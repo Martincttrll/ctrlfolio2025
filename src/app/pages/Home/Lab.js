@@ -17,6 +17,7 @@ export default class Lab {
       });
 
       item.addEventListener("mousemove", (e) => {
+        img.style.opacity = 1;
         img.style.left = `${e.clientX}px`;
         img.style.top = `${e.clientY}px`;
       });
