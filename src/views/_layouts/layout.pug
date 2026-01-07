@@ -21,6 +21,8 @@ html(lang='fr')
         include ../_includes/navigation.pug
         .content(data-template=template)
             block content
+            img(src="/img/eye.svg", alt="I see you").eye
+            
 
     script.
         window.PRISMIC = !{JSON.stringify(prismic).replace(/<\//g, "<\\/")};
