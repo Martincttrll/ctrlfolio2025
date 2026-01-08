@@ -1,4 +1,5 @@
 import Component from "@classes/Component";
+import { gsap } from "gsap";
 export default class WorkViewer extends Component {
   constructor() {
     super({
@@ -7,7 +8,7 @@ export default class WorkViewer extends Component {
         img: ".work__img",
         tags: ".work__tags",
         date: ".work__date",
-        link: ".work__link",
+        imgWrapper: ".work__img__wrapper",
         linkLabel: ".work__link__label",
         url: ".work__url",
         minimap: ".works__minimap__track",
@@ -18,7 +19,7 @@ export default class WorkViewer extends Component {
     this.currentIndex = 0;
     this.parseWorks();
     this.createMinimap();
-    this.displayWork(this.works[0]);
+    this.displayWork(this.works[0], "firstcall");
     this.addEventListeners();
   }
 
@@ -37,6 +38,13 @@ export default class WorkViewer extends Component {
         tags: work.data.tags.map((tagObj) => tagObj.tag),
       });
     });
+    const isYear = (d) => /^\d{4}$/.test(d);
+    this.works = [...this.works].sort(
+      (a, b) =>
+        isYear(b.date) - isYear(a.date) || Number(b.date) - Number(a.date)
+    );
+
+    this.works = [...this.works, ...this.works, ...this.works];
   }
 
   createMinimap() {
@@ -51,18 +59,57 @@ export default class WorkViewer extends Component {
     });
   }
 
-  updateMinimap() {
-    const gap = parseFloat(getComputedStyle(this.elements.minimap).gap);
-    const thumbnailHeight = this.elements.minimap.querySelector(
-      ".works__minimap__thumbnail"
-    ).offsetHeight;
-    const percent = this.currentIndex * (thumbnailHeight + gap);
-    this.elements.indicator.style.transform = `translateY(${percent}px)`;
-
+  updateMinimap(isNext) {
     const thumbnails = this.elements.minimap.querySelectorAll(
       ".works__minimap__thumbnail"
     );
+    const indicator = this.elements.indicator;
+    const thumbHeight = thumbnails[0].offsetHeight;
+    const gap = parseFloat(getComputedStyle(this.elements.minimap).gap);
+    const total = thumbnails.length;
+
     const currentThumbnail = thumbnails[this.currentIndex];
+    const newTop =
+      currentThumbnail.getBoundingClientRect().top -
+      this.elements.minimap.getBoundingClientRect().top;
+
+    if (isNext !== "firstcall") {
+      const isWrapNext = this.currentIndex - 1 < 0 && isNext;
+      const isWrapPrev = this.currentIndex + 1 >= total && !isNext;
+
+      const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
+      // --- CAS NEXT (ou wrap premier -> dernier) ---
+      if ((isNext && !isWrapNext) || isWrapPrev) {
+        const stretchHeight = isWrapPrev
+          ? thumbHeight * total
+          : thumbHeight * 2;
+
+        tl.to(indicator, {
+          height: stretchHeight,
+          duration: 0.25,
+        }).to(indicator, {
+          top: newTop,
+          height: thumbHeight,
+          duration: 0.25,
+        });
+      }
+
+      // --- CAS PREV (ou wrap dernier -> premier) ---
+      else if ((!isNext && !isWrapPrev) || isWrapNext) {
+        const stretchHeight = isWrapNext
+          ? thumbHeight * total
+          : thumbHeight * 2;
+
+        tl.to(indicator, {
+          top: newTop,
+          height: stretchHeight,
+          duration: 0.25,
+        }).to(indicator, {
+          height: thumbHeight,
+          duration: 0.25,
+        });
+      }
+    }
 
     thumbnails.forEach((thumbnail) => {
       if (thumbnail !== currentThumbnail) {
@@ -73,7 +120,7 @@ export default class WorkViewer extends Component {
     currentThumbnail.style.filter = "grayscale(0%)";
   }
 
-  displayWork(work) {
+  displayWork(work, isNext) {
     this.elements.img.src = work.imgUrl;
     this.elements.date.textContent = "//" + work.date;
     this.elements.url.href = work.url;
@@ -85,11 +132,11 @@ export default class WorkViewer extends Component {
       this.elements.tags.appendChild(tagSpan);
     });
 
-    this.updateMinimap();
+    this.updateMinimap(isNext);
   }
 
   addEventListeners() {
-    const link = this.elements.link;
+    const imgWrapper = this.elements.imgWrapper;
     const label = this.elements.linkLabel;
 
     // initial styles
@@ -129,10 +176,10 @@ export default class WorkViewer extends Component {
       track.style.animation = null;
     };
 
-    link.addEventListener("mouseenter", () => {
+    imgWrapper.addEventListener("mouseenter", () => {
       label.style.opacity = 1;
     });
-    link.addEventListener("mouseleave", () => {
+    imgWrapper.addEventListener("mouseleave", () => {
       label.style.opacity = 0;
     });
 
@@ -152,8 +199,8 @@ export default class WorkViewer extends Component {
     };
     if (!this._rafId) this._rafId = requestAnimationFrame(rafLoop);
 
-    link.addEventListener("mousemove", (e) => {
-      const rect = link.getBoundingClientRect();
+    imgWrapper.addEventListener("mousemove", (e) => {
+      const rect = imgWrapper.getBoundingClientRect();
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
 
@@ -201,7 +248,11 @@ export default class WorkViewer extends Component {
       }
 
       this.hoverZone = "middle";
-      const title = this.works[this.currentIndex].title + " - discover";
+      const currentTitle = this.works[this.currentIndex].title;
+      const title =
+        currentTitle === "???"
+          ? currentTitle + " - " + currentTitle
+          : currentTitle + " - discover";
       if (
         !label.classList.contains("ribbon--marquee") ||
         label.dataset.text !== title
@@ -211,7 +262,7 @@ export default class WorkViewer extends Component {
         label.dataset.text = title;
       }
 
-      // compute position so ribbon stays inside link
+      // compute position so ribbon stays inside imgWrapper
       const paddingY = 12;
       let x = mouseX - label.offsetWidth / 2;
       // place marquee below cursor instead of above
@@ -222,19 +273,32 @@ export default class WorkViewer extends Component {
       this._desiredPos.y = y;
     });
 
-    // handle clicks: previous/next or follow link
-    link.addEventListener("click", (e) => {
+    // handle clicks: previous/next or follow imgWrapper
+    imgWrapper.addEventListener("click", (e) => {
       e.stopImmediatePropagation();
       if (this.hoverZone === "prev") {
         this.currentIndex =
           (this.currentIndex - 1 + this.works.length) % this.works.length;
-        this.displayWork(this.works[this.currentIndex]);
+        this.displayWork(this.works[this.currentIndex], false);
       } else if (this.hoverZone === "next") {
         this.currentIndex = (this.currentIndex + 1) % this.works.length;
-        this.displayWork(this.works[this.currentIndex]);
+        this.displayWork(this.works[this.currentIndex], true);
       } else {
-        window.app.onChange({ url: this.works[this.currentIndex].link });
+        window.app.onChange({ url: this.works[this.currentIndex].imgWrapper });
       }
     });
+
+    const thumbnails = document.querySelectorAll(".works__minimap__thumbnail");
+
+    if (thumbnails.length > 0) {
+      thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener("click", (e) => {
+          e.stopImmediatePropagation();
+          const isNext = index > this.currentIndex;
+          this.currentIndex = index;
+          this.displayWork(this.works[this.currentIndex], isNext);
+        });
+      });
+    }
   }
 }

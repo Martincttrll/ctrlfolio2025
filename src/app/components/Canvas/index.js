@@ -103,7 +103,6 @@ export default class Canvas {
     //LiquidBackground
     if (this.liquidBackground) {
       this.liquidBackground.setWrapper(document.querySelector(".lenis>div"));
-      console.log("liquidbackground upadtewrapper");
     }
 
     if (this.home) this.home.hide();
