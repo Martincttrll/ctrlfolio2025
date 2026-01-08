@@ -4,6 +4,7 @@ footer.footer {
   width: 100%;
   overflow: hidden;
   color: $primary;
+  background-color: $primary;
 
   .footer__wrapper {
     position: relative;
@@ -20,6 +21,7 @@ footer.footer {
 
   h2 {
     transform: scaleY(2.5);
+    color: white;
     position: absolute;
     bottom: 3.5rem;
     left: 0;
