@@ -284,7 +284,7 @@ export default class WorkViewer extends Component {
         this.currentIndex = (this.currentIndex + 1) % this.works.length;
         this.displayWork(this.works[this.currentIndex], true);
       } else {
-        window.app.onChange({ url: this.works[this.currentIndex].imgWrapper });
+        window.app.onChange({ url: this.works[this.currentIndex].link });
       }
     });
 
