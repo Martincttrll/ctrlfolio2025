@@ -10,7 +10,8 @@ block content
     .work
         .work__wrapper 
             .liquid__background__wrapper
-                img(src=work.data.img.url, alt=work.data.title[0].text).work__img
+                .work__img__wrapper
+                    img(src=work.data.img.url, alt=work.data.title[0].text).work__img
                 .work__content
                     .work__info 
                         .work__tags= work.data.tags.map((t) => '[' + t.tag + ']').join(' ')

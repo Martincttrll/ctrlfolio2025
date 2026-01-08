@@ -210,6 +210,7 @@ export default class LiquidBackground {
   // }
 
   updateY(y = 0) {
+    if (!this.mesh || !this.sizes) return;
     const normalizedScroll = -y / window.innerHeight;
     this.mesh.position.y =
       this.sizes.height / 2 -

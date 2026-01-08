@@ -1,4 +1,5 @@
 import Component from "@classes/Component";
+import TransitionWork from "@animations/TransitionWork.js";
 import { gsap } from "gsap";
 export default class WorkViewer extends Component {
   constructor() {
@@ -19,6 +20,7 @@ export default class WorkViewer extends Component {
     this.currentIndex = 0;
     this.parseWorks();
     this.createMinimap();
+    this.createTransitionWork();
     this.displayWork(this.works[0], "firstcall");
     this.addEventListeners();
   }
@@ -133,6 +135,13 @@ export default class WorkViewer extends Component {
     });
 
     this.updateMinimap(isNext);
+  }
+
+  createTransitionWork() {
+    this.transitionWork = new TransitionWork({
+      element: this.elements.imgWrapper,
+      elements: { img: this.elements.img },
+    });
   }
 
   addEventListeners() {
@@ -284,7 +293,8 @@ export default class WorkViewer extends Component {
         this.currentIndex = (this.currentIndex + 1) % this.works.length;
         this.displayWork(this.works[this.currentIndex], true);
       } else {
-        window.app.onChange({ url: this.works[this.currentIndex].link });
+        this.transitionWork.animateIn(this.works[this.currentIndex]);
+        // window.app.onChange({ url: this.works[this.currentIndex].link });
       }
     });
 

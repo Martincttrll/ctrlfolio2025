@@ -12,6 +12,17 @@
   min-height: 100%;
 }
 
+.work .work__img__wrapper {
+  width: 100vw;
+  height: 70dvh;
+  overflow: hidden;
+  img.work__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 .work__info {
   margin-top: 10px;
   display: flex;
