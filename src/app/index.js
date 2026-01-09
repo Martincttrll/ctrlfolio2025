@@ -65,9 +65,6 @@ class App {
 
     this.page = this.pages[this.template];
     this.page.create();
-
-    //Allow to use lenis in navigation for lenis.scrollTo
-    this.navigation.lenis = this.page.smoothScroll.lenis;
   }
 
   createCanvas() {
@@ -120,7 +117,8 @@ class App {
     if (this.isFetching || this.url === url) return;
 
     this.isFetching = true;
-    this.page.hide();
+    // start hide animation but don't await it so fetch can run concurrently
+    const hidePromise = this.page.hide();
 
     const request = await window.fetch(url);
     if (request.status === 200) {
@@ -152,7 +150,14 @@ class App {
       this.page.create();
 
       this.onResize();
-      this.page.show();
+
+      // // ensure the previous page hide animation finished before running show()
+      // try {
+      //   await hidePromise;
+      // } catch (e) {
+      //   // swallow errors from hide so navigation still proceeds
+      // }
+      await this.page.show();
 
       this.canvas.onChange({ template: this.template, url });
       this.page.setCanvasPage(this.canvas.canvasPage);
