@@ -5,7 +5,7 @@ varying vec2 vUv;
 
 void main() {
 
-    vec4 data = texture2D(uSimTexture, vUv);
+    vec4 data = texture2D(uSimTexture, vUv) * 0.2;
 
     vec2 distortion = 0.3 * data.zw;
     vec4 color = texture2D(uTexture, vUv + distortion);
