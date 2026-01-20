@@ -50,7 +50,7 @@ class App {
     this.preloader.once("completed", this.onPreloaded.bind(this));
     this.preloader.once(
       "animationCompleted",
-      this.onPreloaderAnimationCompleted.bind(this)
+      this.onPreloaderAnimationCompleted.bind(this),
     );
   }
 
@@ -114,7 +114,16 @@ class App {
   };
 
   async onChange({ url, push = true }) {
-    if (this.isFetching || this.url === url) return;
+    console.log("test");
+    if (
+      this.isFetching ||
+      this.url === url ||
+      url === null ||
+      url === undefined ||
+      url === "undefined"
+    )
+      return;
+    console.log("test2");
 
     this.isFetching = true;
     // start hide animation but don't await it so fetch can run concurrently

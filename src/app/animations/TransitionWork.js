@@ -47,6 +47,7 @@ export default class TransitionWork extends Component {
 
   animateIn(work) {
     this.work = work;
+    if (this.work.title === "???") return;
     this.createMockImg();
     this.createHidingDiv();
 

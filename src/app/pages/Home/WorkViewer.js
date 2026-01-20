@@ -43,10 +43,8 @@ export default class WorkViewer extends Component {
     const isYear = (d) => /^\d{4}$/.test(d);
     this.works = [...this.works].sort(
       (a, b) =>
-        isYear(b.date) - isYear(a.date) || Number(b.date) - Number(a.date)
+        isYear(b.date) - isYear(a.date) || Number(b.date) - Number(a.date),
     );
-
-    this.works = [...this.works, ...this.works, ...this.works];
   }
 
   createMinimap() {
@@ -63,7 +61,7 @@ export default class WorkViewer extends Component {
 
   updateMinimap(isNext) {
     const thumbnails = this.elements.minimap.querySelectorAll(
-      ".works__minimap__thumbnail"
+      ".works__minimap__thumbnail",
     );
     const indicator = this.elements.indicator;
     const thumbHeight = thumbnails[0].offsetHeight;
@@ -202,7 +200,7 @@ export default class WorkViewer extends Component {
       this._currentPos.y +=
         (this._desiredPos.y - this._currentPos.y) * this._followEase;
       label.style.transform = `translate3d(${Math.round(
-        this._currentPos.x
+        this._currentPos.x,
       )}px, ${Math.round(this._currentPos.y)}px, 0)`;
       this._rafId = requestAnimationFrame(rafLoop);
     };
