@@ -50,7 +50,7 @@ export default class Page extends EventEmitter {
     };
 
     this.animationsTypeWriter = toArray(this.elements.animationsTypeWriter).map(
-      (element) => new TypeWriter({ element })
+      (element) => new TypeWriter({ element }),
     );
     this.animationsMainTitle = toArray(this.elements.animationsMainTitle).map(
       (element) =>
@@ -60,7 +60,7 @@ export default class Page extends EventEmitter {
             span: document.querySelectorAll("h1 span"),
             baseline: document.querySelector(".home__baseline"),
           },
-        })
+        }),
     );
   }
 
@@ -73,7 +73,7 @@ export default class Page extends EventEmitter {
   }
 
   show(_url) {
-    console.log("show");
+    // console.log("show");
     return new Promise((resolve) => {
       // simple DOM-based lookup: find existing swarm container and destroy it
       const container = document.querySelector(".ctrl-swarm-container");
