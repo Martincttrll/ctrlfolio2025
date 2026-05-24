@@ -51,7 +51,7 @@ void main() {
     pressure *= uDrag;                    // Friction de pression (évite l'infini)
 
     
-    vec2 mouseUV = uMouse; // déjà en UV !
+    vec2 mouseUV = uMouse;
 
     if (uMouse.x > 0.0) {
         float dist = distance(vUv, uMouse);

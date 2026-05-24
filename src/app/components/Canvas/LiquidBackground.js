@@ -35,7 +35,7 @@ export default class LiquidBackground {
         type: THREE.FloatType,
         wrapS: THREE.ClampToEdgeWrapping,
         wrapT: THREE.ClampToEdgeWrapping,
-      }
+      },
     );
 
     this.rtB = this.rtA.clone();
@@ -171,14 +171,14 @@ export default class LiquidBackground {
     if (this.simUniforms) {
       this.simUniforms.uResolution.value.set(
         window.innerWidth,
-        window.innerHeight
+        window.innerHeight,
       );
     }
 
     if (this.uniforms.uResolution) {
       this.uniforms.uResolution.value.set(
         window.innerWidth,
-        window.innerHeight
+        window.innerHeight,
       );
     }
 
@@ -195,19 +195,10 @@ export default class LiquidBackground {
     this.baseScale = this.mesh.scale.clone();
   }
 
-  // External API: set the wrapper bounding rect (DOMRect-like) so the class does not
-  // need to query the DOM itself. Call this after page layout is ready.
   setWrapper(wrapper) {
     this.wrapper = wrapper;
     if (this.sizes) this.onResize(this.sizes);
   }
-
-  // External API: set absolute mouse position (client coords) if you prefer to
-  // forward pointer events from the page instead of relying on a global listener.
-  // setMouseAbsolute(x, y) {
-  //   this.mouseAbsolute.x = x;
-  //   this.mouseAbsolute.y = y;
-  // }
 
   updateY(y = 0) {
     if (!this.mesh || !this.sizes) return;
@@ -236,7 +227,7 @@ export default class LiquidBackground {
 
     this.simUniforms.uMouse.value.set(
       Math.max(0, Math.min(1, mouseX)),
-      Math.max(0, Math.min(1, mouseY))
+      Math.max(0, Math.min(1, mouseY)),
     );
 
     // STEP 1 : simule → écrit dans currentRT

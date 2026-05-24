@@ -18,5 +18,13 @@ block content
                         a(href=work.data.link.url, target="_blank").work__link.external Live website &#8599;
                     h1.work__title= work.data.title[0].text
                     .work__text!= work.data.descriptionHtml
+                    .work__carousel
+                        each item in work.data.carousel
+                            if item.img1
+                                .work__carousel__img__wrapper
+                                    img(
+                                        src=item.img1.url,
+                                        alt=work.data.title[0].text
+                                    ).work__carousel__img
 
             include ./_includes/footer.pug
